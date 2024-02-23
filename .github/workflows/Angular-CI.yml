@@ -19,8 +19,10 @@ jobs:
       - name: Install and Build
         run: |
           npm install
-          ng build --configuration production
-      - run: |
+          npm run build
+          npm run test
+      - name: List files
+        run: |
           ls
-          pwd 
+          pwd
           tree .
