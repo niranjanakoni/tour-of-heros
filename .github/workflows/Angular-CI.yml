@@ -18,6 +18,8 @@ jobs:
           node-version: '16.x'
       - name: Install and Build
         run: |
+          npm install typescript@^5.2
+          npm install -g @angular/cli
           npm install
           npm run build
           npm run test
