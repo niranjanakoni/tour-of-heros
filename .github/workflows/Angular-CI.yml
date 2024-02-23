@@ -19,8 +19,6 @@ jobs:
       - name: Install and Build
         run: |
           npm install
-          npm config set registry https://registry.npmjs.org
-          npm install -g @angular/cli@17.x
           ng build --configuration production
       - run: |
           ls
