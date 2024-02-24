@@ -17,11 +17,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
-      - run: npm install typescript@^5.3
-      - run: npm install --force
-      - run: npm run build --if-present
-      - name: List files
-        run: |
-          ls
-          pwd
-          tree .
+      - run: |
+          npm install typescript@^5.3
+          npm install --force
+          npm config set registry https://registry.npmjs.org
+          npm install -g @angular/cli@17.0.0
+          ng build --configuration production
+      # - run: |
+      #     npm install typescript@^5.3
+      #     npm install --force
+      #     npm run build --if-present
