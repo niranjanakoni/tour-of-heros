@@ -33,7 +33,7 @@ jobs:
         with:
           name: angular-artifact
           path: | 
-            dist/browser
+            dist/browser/*
             web.config
 
   deploy:
