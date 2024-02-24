@@ -1,0 +1,51 @@
+name: Angular CI-CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          
+      - name: Install and Build 
+        run: |
+          npm install typescript@^5.3
+          npm install
+          npm config set registry https://registry.npmjs.org
+          npm install -g @angular/cli@17.0.0
+          # ng build --output-path docs --base-href /tour-of-heros/
+          ng build --configuration production
+
+      - name: copying files to windows
+        run: scp -r ${{ github.workspace }}/dist/browser/* niranjanak@103.5.133.99:C:/IIS-applications/angular-tourOfHeros
+
+      # - name: Upload a Build Artifact
+      #   uses: actions/upload-artifact@v4.3.1
+      #   with:
+      #     name: angular-artifact
+      #     path: dist
+
+  # deploy:
+  #   runs-on: angular
+  #   needs: build
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v4
+  #     - name: Download a Build Artifact
+  #       uses: actions/download-artifact@v4.1.2
+  #       with:
+  #         name: angular-artifact
+  #         path: C:\IIS-applications\angular-tourOfHeros
+  #     - run: cp ${{ github.workspace }}\web.config C:\IIS-applications\angular-tourOfHeros\browser
