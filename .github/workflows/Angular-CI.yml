@@ -17,8 +17,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
-      - run: npm install @angular/compiler-cli
-      - run: npm install
+      - run: npm install typescript@^5.3
+      - run: npm install --force
       - run: npm run build --if-present
       - name: List files
         run: |
