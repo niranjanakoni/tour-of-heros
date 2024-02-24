@@ -19,7 +19,7 @@ jobs:
           node-version: '18.x'
       - run: |
           npm install typescript@^5.3
-          npm install --force
+          npm install
           npm config set registry https://registry.npmjs.org
           npm install -g @angular/cli@17.0.0
           ng build --configuration production
